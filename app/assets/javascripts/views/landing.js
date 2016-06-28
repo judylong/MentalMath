@@ -5,7 +5,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '-': 'minus',
       '*': 'times',
       '/': 'divided by'
-    }
+    };
     this.expOptions = "";
     this.right = 11;
     this.showText = false;
@@ -21,7 +21,12 @@ MentalMath.Views.Landing = Backbone.View.extend({
     var content = this.template();
     this.$el.html(content);
 
-    setTimeout(this.renderCard.bind(this));
+    setTimeout(function() {
+      this.levelDiv = $('div').find('[data-level=0]');
+      this.level = this.levelDiv.data('level');
+      this.levelDiv.addClass('active');
+      this.renderCard();
+    }.bind(this));
     return this;
   },
 
@@ -52,7 +57,16 @@ MentalMath.Views.Landing = Backbone.View.extend({
   events: {
     "keyup .answer": "submitAnswer",
     "click .showText": "setShowText",
-    "click input": "clearInput"
+    "click input": "clearInput",
+    "click .levels > div": "selectLevel"
+  },
+
+  selectLevel: function(e) {
+    debugger
+    this.levelDiv.removeClass('active');
+    this.levelDiv = $(e.currentTarget);
+    this.level = this.levelDiv.data('level');
+    this.levelDiv.addClass('active');
   },
 
   clearInput: function(e) {
