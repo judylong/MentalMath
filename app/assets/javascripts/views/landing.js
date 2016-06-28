@@ -30,9 +30,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       this.currentExp = this.makeExpression();
     }
 
-    var utterance = new SpeechSynthesisUtterance(this.currentExp.speech);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    this.speak(this.currentExp.speech);
 
     var question;// = {'text': this.currentExp.text};
     if (this.showText) {
@@ -44,14 +42,18 @@ MentalMath.Views.Landing = Backbone.View.extend({
     return this;
   },
 
+  speak: function(speech) {
+    var utterance = new SpeechSynthesisUtterance(speech);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+  },
+
   events: {
     "keyup .answer": "submitAnswer",
     "click .showText": "setShowText"
   },
 
   setShowText: function(e) {
-    // e.preventDefault();
-    debugger
     if (e.currentTarget.checked) {
       this.showText = true;
     } else {
@@ -70,6 +72,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       } else {
         $('.wrong').show();
         setTimeout(function() {$('.wrong').hide();}, 500);
+        this.speak(this.currentExp.speech);
       }
     }
   },
