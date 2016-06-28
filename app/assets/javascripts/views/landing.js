@@ -39,6 +39,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       question = "";
     }
     $('.card').html(JST['landing/card']({question: question}));
+    $('input').focus();
     return this;
   },
 
