@@ -1,13 +1,32 @@
 @import 'partials/color';
 
 .landing {
+  // margin: 10px auto;
+  text-align: center;
+  >div {
+    display: inline-block;
+    // float: left;
+    margin: 20px;
+    vertical-align: bottom;
+  }
+}
+
+.levels {
+  // padding: 20px;
+  >div {
+    padding: 10px;
+  }
+}
+
+.card {
+  // display: inline-block;
   width: 500px;
   height: 300px;
   background: $superlight-blue;
-  margin: 20px auto;
+  // margin: 20px auto;
   border: 2px solid $orange-shade;
   border-radius: 3px;
-  text-align: center;
+  // text-align: center;
 }
 
 .question {

@@ -10,10 +10,18 @@ MentalMath.Views.Landing = Backbone.View.extend({
 
   render: function() {
     this.expOptions = {'operation':'*'};
-    var question = {'text': this.makeExpression()};
 
-    var content = this.template({question: question});
+    var content = this.template();
     this.$el.html(content);
+
+    setTimeout(this.renderCard.bind(this));
+    return this;
+  },
+
+  renderCard: function() {
+    var exp = this.makeExpression();
+    var question = {'text': exp};
+    $('.card').html(JST['landing/card']({question: question}));
     return this;
   },
 
@@ -24,8 +32,13 @@ MentalMath.Views.Landing = Backbone.View.extend({
   submitAnswer: function(e) {
     e.preventDefault();
     if (e.keyCode === 13) {
-      alert(this.checkingSolution(e.target.value));
-      this.render();
+      if (this.checkingSolution(e.target.value)) {
+        debugger
+        $('.correct').show();
+        setTimeout(this.renderCard.bind(this),1000);
+      } else {
+        $('.wrong').show();
+      }
     }
   },
 
@@ -42,10 +55,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '*': function (x,y) { return x * y; },
       '/': function (x,y) { return x / y; }
     };
-    var result;
-    debugger
-    (matchUp[this.expOptions.operation](this.left, this.right) === +submission) ? (result = true) : (result = false);
-    // this.currentExpression = this.makeExpression();
-    return result;
+    (matchUp[this.expOptions.operation](this.left, this.right) === +submission) ? (this.result = true) : (this.result = false);
+    return this;
   },
 })
