@@ -1,5 +1,11 @@
 MentalMath.Views.Landing = Backbone.View.extend({
   initialize: function() {
+    this.operationSpeechMatch = {
+      '+': 'plus',
+      '-': 'minus',
+      '*': 'times',
+      '/': 'divided by'
+    }
     this.expOptions = "";
     this.right = 11;
   },
@@ -20,7 +26,12 @@ MentalMath.Views.Landing = Backbone.View.extend({
 
   renderCard: function() {
     var exp = this.makeExpression();
-    var question = {'text': exp};
+
+    var utterance = new SpeechSynthesisUtterance(exp.speech);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+
+    var question = {'text': exp.text};
     $('.card').html(JST['landing/card']({question: question}));
     return this;
   },
@@ -45,7 +56,8 @@ MentalMath.Views.Landing = Backbone.View.extend({
   makeExpression: function() {
     this.left = Math.floor(Math.random() * 100).toString();
     var text = this.left + this.expOptions.operation + 11;
-    return text;
+    var speech = [this.left, this.operationSpeechMatch[this.expOptions.operation], 11].join(" ");
+    return {text: text, speech: speech};
   },
 
   checkingSolution: function(submission) {
