@@ -1,0 +1,11 @@
+@import 'partials/color';
+
+#header {
+  border-bottom: 3px solid $yelloish-green; //$off-yellowish;//$orange-shade;
+  //$yelloish-green;
+  background: $superlight-blue;//$light-blue;//$dark-blue;
+}
+
+.header-item {
+  padding: 10px;
+}

@@ -1,0 +1,19 @@
+@import 'partials/color';
+
+.landing {
+  width: 500px;
+  height: 300px;
+  background: $superlight-blue;
+  margin: 20px auto;
+  border: 2px solid $orange-shade;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.question {
+  font-size: 30px;
+}
+
+.answer {
+  background: $off-white; //#C7D8E8;
+}
