@@ -33,11 +33,11 @@ MentalMath.Views.Landing = Backbone.View.extend({
     e.preventDefault();
     if (e.keyCode === 13) {
       if (this.checkingSolution(e.target.value)) {
-        debugger
         $('.correct').show();
         setTimeout(this.renderCard.bind(this),1000);
       } else {
         $('.wrong').show();
+        setTimeout(function() {$('.wrong').hide();}, 500);
       }
     }
   },
@@ -55,7 +55,8 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '*': function (x,y) { return x * y; },
       '/': function (x,y) { return x / y; }
     };
-    (matchUp[this.expOptions.operation](this.left, this.right) === +submission) ? (this.result = true) : (this.result = false);
-    return this;
+    var result;
+    (matchUp[this.expOptions.operation](this.left, this.right) === +submission) ? (result = true) : (result = false);
+    return result;
   },
 })
