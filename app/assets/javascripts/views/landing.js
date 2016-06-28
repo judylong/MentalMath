@@ -50,7 +50,12 @@ MentalMath.Views.Landing = Backbone.View.extend({
 
   events: {
     "keyup .answer": "submitAnswer",
-    "click .showText": "setShowText"
+    "click .showText": "setShowText",
+    "click input": "clearInput"
+  },
+
+  clearInput: function(e) {
+    e.target.value = "";
   },
 
   setShowText: function(e) {
