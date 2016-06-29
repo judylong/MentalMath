@@ -19,9 +19,9 @@ MentalMath.Views.Landing = Backbone.View.extend({
     this.$el.html(content);
 
     setTimeout(function() {
-      this.levelDiv = $('div').find('[data-level=0]');
-      this.level = this.levelDiv.data('level');
-      this.levelDiv.addClass('active');
+      this.levelDivs = $('div').find('[data-level=0]');
+      this.level = this.levelDivs.data('level');
+      this.levelDivs.addClass('active');
       this.renderCard();
       this.updateScore();
     }.bind(this));
@@ -35,7 +35,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
 
     this.speak(this.currentExp.speech);
 
-    var question;// = {'text': this.currentExp.text};
+    var question;
     if (this.showText) {
       question = {'text': this.currentExp.text};
     } else {
@@ -60,10 +60,10 @@ MentalMath.Views.Landing = Backbone.View.extend({
   },
 
   selectLevel: function(e) {
-    this.levelDiv.removeClass('active');
-    this.levelDiv = $(e.currentTarget);
-    this.level = this.levelDiv.data('level');
-    this.levelDiv.addClass('active');
+    this.levelDivs.removeClass('active');
+    this.level = $(e.currentTarget).data('level');
+    this.levelDivs = $('div').find('[data-level='+ this.level +']');
+    this.levelDivs.addClass('active');
     this.currentExp = this.makeExpression();
     this.renderCard();
   },
