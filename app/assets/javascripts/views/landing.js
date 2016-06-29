@@ -6,8 +6,6 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '*': 'times',
       '/': 'divided by'
     };
-    this.expOptions = "";
-    this.right = 11;
     this.showText = false;
   },
 
@@ -16,8 +14,6 @@ MentalMath.Views.Landing = Backbone.View.extend({
   className: 'landing',
 
   render: function() {
-    this.expOptions = {'operation':'*'};
-
     var content = this.template();
     this.$el.html(content);
 
@@ -62,11 +58,12 @@ MentalMath.Views.Landing = Backbone.View.extend({
   },
 
   selectLevel: function(e) {
-    debugger
     this.levelDiv.removeClass('active');
     this.levelDiv = $(e.currentTarget);
     this.level = this.levelDiv.data('level');
     this.levelDiv.addClass('active');
+    this.currentExp = this.makeExpression();
+    this.renderCard();
   },
 
   clearInput: function(e) {
@@ -98,10 +95,46 @@ MentalMath.Views.Landing = Backbone.View.extend({
   },
 
   makeExpression: function() {
-    this.left = Math.floor(Math.random() * 100).toString();
-    var text = this.left + this.expOptions.operation + 11;
-    var speech = [this.left, this.operationSpeechMatch[this.expOptions.operation], 11].join(" ");
+    if (this.level === 0) {
+      this.right = 11;
+      this.left = this.numberGenerator(2);
+      this.operation = '*';
+    } else if (this.level === 1) {
+      this.expressionSetter(2,2,'+');
+    } else if (this.level === 2) {
+      this.expressionSetter(3,3,'+');
+    } else if (this.level === 3) {
+      this.expressionSetter(2,2,'-');
+    } else if (this.level === 4) {
+      this.expressionSetter(3,3,'-');
+    } else if (this.level === 5) {
+      this.expressionSetter(2,1,'*');
+    } else if (this.level === 6) {
+      this.expressionSetter(3,1,'*');
+    } else if (this.level === 7) {
+      this.left = this.numberGenerator(2);
+      this.right = this.left;
+      this.operation = '*';
+    } else if (this.level === 8) {
+      this.expressionSetter(2,2,'*');
+    } else if (this.level === 9) {
+      this.left = this.numberGenerator(3);
+      this.right = this.left;
+      this.operation = '*';
+    }
+    var text = this.left + this.operation + this.right;
+    var speech = [this.left, this.operationSpeechMatch[this.operation], this.right].join(" ");
     return {text: text, speech: speech};
+  },
+
+  numberGenerator: function(digits) {
+    return Math.floor(Math.random() * Math.pow(10, digits)).toString();
+  },
+
+  expressionSetter: function(digLeft, digRight, operation) {
+    this.left = this.numberGenerator(digLeft);
+    this.right = this.numberGenerator(digRight);
+    this.operation = operation;
   },
 
   checkingSolution: function(submission) {
@@ -112,7 +145,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '/': function (x,y) { return x / y; }
     };
     var result;
-    (matchUp[this.expOptions.operation](this.left, this.right) === +submission) ? (result = true) : (result = false);
+    (matchUp[this.operation](this.left, this.right) === +submission) ? (result = true) : (result = false);
     return result;
   },
-})
+});
