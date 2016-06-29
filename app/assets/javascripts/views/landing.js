@@ -7,6 +7,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '/': 'divided by'
     };
     this.showText = false;
+    this.score = 0;
   },
 
   template: JST['landing/landing'],
@@ -22,6 +23,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       this.level = this.levelDiv.data('level');
       this.levelDiv.addClass('active');
       this.renderCard();
+      this.updateScore();
     }.bind(this));
     return this;
   },
@@ -84,14 +86,21 @@ MentalMath.Views.Landing = Backbone.View.extend({
     if (e.keyCode === 13) {
       if (this.checkingSolution(e.target.value)) {
         $('.correct').show();
+        this.score += 1;
         this.currentExp = this.makeExpression();
         setTimeout(this.renderCard.bind(this),1000);
       } else {
         $('.wrong').show();
+        this.score -= 1;
         setTimeout(function() {$('.wrong').hide();}, 500);
         this.speak(this.currentExp.speech);
       }
+      this.updateScore();
     }
+  },
+
+  updateScore: function() {
+    $(".score").html(this.score);
   },
 
   makeExpression: function() {
