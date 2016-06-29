@@ -145,7 +145,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
       '/': function (x,y) { return x / y; }
     };
     var result;
-    (matchUp[this.operation](this.left, this.right) === +submission) ? (result = true) : (result = false);
+    (matchUp[this.operation](+this.left, +this.right) === +submission) ? (result = true) : (result = false);
     return result;
   },
 });
