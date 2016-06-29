@@ -88,7 +88,7 @@ MentalMath.Views.Landing = Backbone.View.extend({
         $('.correct').show();
         this.score += 1;
         this.currentExp = this.makeExpression();
-        setTimeout(this.renderCard.bind(this),1000);
+        setTimeout(this.renderCard.bind(this),500);
       } else {
         $('.wrong').show();
         this.score -= 1;
