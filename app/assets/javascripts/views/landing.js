@@ -136,8 +136,12 @@ MentalMath.Views.Landing = Backbone.View.extend({
     return {text: text, speech: speech};
   },
 
-  numberGenerator: function(digits) {
-    return Math.floor(Math.random() * Math.pow(10, digits)).toString();
+  numberGenerator: function(digits, looseRange) {
+    digits -= 1;
+    if (looseRange) {
+      return Math.floor(Math.random() * Math.pow(10, digits)).toString();
+    }
+    return Math.floor(Math.random() * 9 * Math.pow(10, digits) + Math.pow(10, digits)).toString();
   },
 
   expressionSetter: function(digLeft, digRight, operation) {
