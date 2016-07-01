@@ -4,8 +4,8 @@
   border-bottom: 3px solid $yelloish-green; //$off-yellowish;//$orange-shade;
   //$yelloish-green;
   background: $superlight-blue;//$light-blue;//$dark-blue;
-}
-
-.header-item {
-  padding: 10px;
+  a {
+    padding: 10px;
+    display: inline-block;
+  }
 }

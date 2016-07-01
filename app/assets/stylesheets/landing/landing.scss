@@ -29,6 +29,17 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  input {
+    font-size: 30px;
+    background: $off-white;
+  }
+}
+
+.correct {
+  color: green;
+}
+.wrong {
+  color: red;
 }
 
 .show-cb {
@@ -40,9 +51,6 @@
   font-size: 30px;
 }
 
-.answer {
-  background: $off-white;
-}
 
 .active {
   background: $yelloish-green;
@@ -65,14 +73,17 @@
   margin-top: 10px;
 }
 
-input[type="text"] {
-  font-size: 30px;
-}
 
-.correct {
-  color: green;
-}
 
-.wrong {
-  color: red;
+.sign-log-div {
+  @extend .card;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px auto;
+  input {
+    font-size: 20px;
+    width: 400px;
+    display: block;
+    margin: 5px;
+  }
 }
