@@ -1,3 +1,7 @@
-<div class="header-item">
-  Dummy
-</div>
+<a href="#">Home</a>
+<% if(currentUser.isLoggedIn()) { %>
+  <a href="#" id="log-out-link">Log out</a>
+<% } else { %>
+  <a href="#users/new">Sign Up</a>
+  <a href="#session/new">Log in</a>
+<% } %>
