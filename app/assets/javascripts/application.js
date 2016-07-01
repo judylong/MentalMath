@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
+//= require jquery.serializejson
 //= require backbone
 //= require mental_math
 //= require_tree ../templates
