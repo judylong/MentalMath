@@ -10,10 +10,17 @@
 }
 
 .levels {
+  // border: 1px solid $off-white;
+  // border-bottom: 2px solid $orange-shade;
+  border-top: 2px solid $orange-shade;
   >div {
     position: relative;
     padding: 12px;
-    border: 1px solid $off-white;
+    // border: 1px solid $orange-shade;
+    border-bottom: 2px solid $orange-shade;
+    border-left: 2px solid $orange-shade;
+    border-right: 2px solid $orange-shade;
+
     .tooltiptext {
       visibility: hidden;
       position: absolute;
@@ -70,11 +77,12 @@
 .active {
   background: $yelloish-green;
   display: block;
-  border: 2px solid $orange-shade;
+  // border: 2px solid $orange-shade;
 }
 
 .info {
   div {
+    border: 2px solid $orange-shade;
     padding: 10px;
     width: 480px;
     margin-bottom: 10px;
