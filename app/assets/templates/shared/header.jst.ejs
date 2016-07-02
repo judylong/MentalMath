@@ -1,7 +1,13 @@
-<a href="#">Home</a>
-<% if(currentUser.isLoggedIn()) { %>
-  <a href="#" id="log-out-link">Log out</a>
-<% } else { %>
-  <a href="#users/new">Sign Up</a>
-  <a href="#session/new">Log in</a>
-<% } %>
+<div class="header-left">
+  <a href="#">Home</a>
+  <a href="#playGame">Play</a>
+</div>
+
+<div class="header-right">
+  <% if(currentUser.isLoggedIn()) { %>
+    <a href="#" id="log-out-link">Log out</a>
+    <% } else { %>
+      <a href="#users/new">Sign Up</a>
+      <a href="#session/new">Log in</a>
+      <% } %>
+</div>
