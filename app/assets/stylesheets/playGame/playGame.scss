@@ -91,4 +91,15 @@
 .landing {
   @extend .card;
   margin: 20px auto;
+  width: 700px;
+  height: auto;
+  padding: 20px;
+  h1 {
+    color: $orange-shade;
+    padding: 5px;
+    font-size: 20px;
+  }
+  a {
+    border-bottom: 2px dotted $off-white;
+  }
 }
