@@ -5,7 +5,7 @@
   >div {
     display: inline-block;
     margin: 20px;
-    vertical-align: bottom;
+    vertical-align: top;
   }
 }
 
@@ -13,6 +13,7 @@
   >div {
     position: relative;
     padding: 12px;
+    border: 1px solid $off-white;
     .tooltiptext {
       visibility: hidden;
       position: absolute;
@@ -56,8 +57,9 @@
 }
 
 .show-cb {
-  padding: 10px;
+  padding: 20px 10px;
   vertical-align: baseline;
+
 }
 
 .question {
