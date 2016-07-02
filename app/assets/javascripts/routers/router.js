@@ -6,6 +6,7 @@ MentalMath.Routers.Router = Backbone.Router.extend({
   routes: {
     "":"landing",
     "playGame": "playGame",
+    "myStats": "myStats",
     "users/new": "newUser",
     "session/new": "logIn"
   },
@@ -17,6 +18,11 @@ MentalMath.Routers.Router = Backbone.Router.extend({
 
   playGame: function() {
     var view = new MentalMath.Views.PlayGame();
+    this._swapView(view);
+  },
+
+  myStats: function() {
+    var view = new MentalMath.Views.MyStats();
     this._swapView(view);
   },
 
