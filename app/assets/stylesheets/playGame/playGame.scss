@@ -1,6 +1,6 @@
 @import 'partials/color';
 
-.landing {
+.play-game {
   text-align: center;
   >div {
     display: inline-block;
@@ -86,4 +86,9 @@
     display: block;
     margin: 5px;
   }
+}
+
+.landing {
+  @extend .card;
+  margin: 20px auto;
 }
