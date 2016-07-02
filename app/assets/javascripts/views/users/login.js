@@ -7,7 +7,7 @@ MentalMath.Views.Login = Backbone.View.extend({
   template: JST['users/login'],
 
   className: 'sign-log-div',
-  
+
   render: function() {
     var content = this.template();
     this.$el.html(content);
@@ -38,7 +38,7 @@ MentalMath.Views.Login = Backbone.View.extend({
     if (this.callback) {
       this.callback();
     } else {
-      Backbone.history.navigate("", {trigger: true});
+      Backbone.history.navigate("#playGame", {trigger: true});
     }
   },
 
