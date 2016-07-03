@@ -1,5 +1,7 @@
 MentalMath.Views.PlayGame = Backbone.View.extend({
   initialize: function() {
+    this.listenTo(MentalMath.currentUser, "change", this.updatePlayer);
+    this.updatePlayer();
     this.operationSpeechMatch = {
       '+': 'plus',
       '-': 'minus',
@@ -23,7 +25,7 @@ MentalMath.Views.PlayGame = Backbone.View.extend({
       this.level = this.levelDivs.data('level');
       this.levelDivs.addClass('active');
       this.renderCard();
-      this.updateScore();
+      this.updateScore(0);
     }.bind(this));
     return this;
   },
@@ -50,6 +52,7 @@ MentalMath.Views.PlayGame = Backbone.View.extend({
     var utterance = new SpeechSynthesisUtterance(speech);
     utterance.lang = 'en-US';
     window.speechSynthesis.speak(utterance);
+    this.startTime = performance.now();
   },
 
   events: {
@@ -81,25 +84,46 @@ MentalMath.Views.PlayGame = Backbone.View.extend({
     this.renderCard();
   },
 
+  updatePlayer: function() {
+    if (MentalMath.currentUser.isLoggedIn()) {
+      this.playerIn = true;
+    } else {
+      this.playerIn = false;
+    }
+  },
+
   submitAnswer: function(e) {
     e.preventDefault();
+    this.timeToAnswer = performance.now() - this.startTime;
     if (e.keyCode === 13) {
       if (this.checkingSolution(e.target.value)) {
         $('.correct').show();
-        this.score += 1;
+        this.updateScore(1);
         this.currentExp = this.makeExpression();
         setTimeout(this.renderCard.bind(this),500);
       } else {
         $('.wrong').show();
-        this.score -= 1;
+        this.updateScore(-1);
         setTimeout(function() {$('.wrong').hide();}, 500);
         this.speak(this.currentExp.speech);
       }
-      this.updateScore();
     }
   },
 
-  updateScore: function() {
+  updateScore: function(increment) {
+    this.score += increment;
+    if (this.playerIn && increment !== 0) {
+      $.ajax({
+        url: "/api/recordings",
+        data: {recording: {
+          level: this.level,
+          correct: increment > 0 ? true:false,
+          duration_ms: this.timeToAnswer
+        }},
+        type: 'POST',
+        dataType: 'json'
+      });
+    }
     $(".score").html(this.score);
   },
 
