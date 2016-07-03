@@ -66,13 +66,11 @@
 .show-cb {
   padding: 20px 10px;
   vertical-align: baseline;
-
 }
 
 .question {
   font-size: 30px;
 }
-
 
 .active {
   background: $yelloish-green;
@@ -96,8 +94,6 @@
   margin-top: 10px;
 }
 
-
-
 .sign-log-div {
   @extend .card;
   font-size: 20px;
@@ -108,6 +104,19 @@
     width: 400px;
     display: block;
     margin: 5px;
+  }
+  button {
+    font-size: 18px;
+    padding: 5px 10px;
+    background-color: $off-white;
+    border: 1px solid $off-yellowish;
+    border-radius: 3px;
+    color: $dark-blue;
+    font-family: Montserrat;
+    &:hover {
+      cursor: pointer;
+      background-color: $yelloish-green;
+    }
   }
 }
 
