@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :recordings
+
   def email_and_password_confirmation
     errors.add(:password, "does not match password confirmation") if password_confirmation && password != password_confirmation
     errors.add(:email, "does not match email confirmation") if email_confirmation && email != email_confirmation
