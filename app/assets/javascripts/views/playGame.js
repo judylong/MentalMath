@@ -1,6 +1,6 @@
 MentalMath.Views.PlayGame = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(MentalMath.currentUser, "change", this.updatePlayer);
+    this.listenTo(MentalMath.currentUser, "logIn logOut", this.updatePlayer);
     this.updatePlayer();
     this.operationSpeechMatch = {
       '+': 'plus',
