@@ -7,17 +7,24 @@ MentalMath.Models.User = Backbone.Model.extend({
   },
 
   parse: function(resp) {
+    var chartUp = false;
     if (resp.levels) {
       this._levels = resp.levels;
       delete resp.levels;
+      chartUp = true;
     }
     if (resp.correctCount) {
       this.set("correctCount", resp.correctCount);
       delete resp.correctCount;
+      chartUp = true;
     }
     if (resp.wrongCount) {
       this.set("wrongCount", resp.wrongCount);
       delete resp.wrongCount;
+      chartUp = true;
+    }
+    if (chartUp) {
+      this.trigger("chartUp");
     }
     return resp;
   },

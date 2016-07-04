@@ -1,10 +1,8 @@
 MentalMath.Views.MyStats = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(MentalMath.currentUser, "change", this.renderCharts);
+    this.listenTo(MentalMath.currentUser, "chartUp", this.renderCharts);
 
-    MentalMath.currentUser.fetch({
-      success: this.renderCharts.bind(this)
-    });
+    MentalMath.currentUser.fetch();
     this.zeroedLevels = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0};
     this.render();
   },
@@ -19,7 +17,10 @@ MentalMath.Views.MyStats = Backbone.View.extend({
 
   renderCharts: function() {
     for(var i = 0; i<=8; i++){
-      this.renderChart(i);
+      if (MentalMath.currentUser.levels()['level'+i].correct.length !== 0 ||
+            MentalMath.currentUser.levels()['level'+i].wrong.length !== 0) {
+        this.renderChart(i);
+      }
     }
     this.renderSpider();
   },
