@@ -4,6 +4,26 @@ MentalMath.Models.User = Backbone.Model.extend({
   toJSON: function() {
     var json = { user: _.clone(this.attributes) };
     return json;
+  },
+
+  parse: function(resp) {
+    if (resp.levels) {
+      this._levels = resp.levels;
+      delete resp.levels;
+    }
+    if (resp.correctCount) {
+      this.set("correctCount", resp.correctCount);
+      delete resp.correctCount;
+    }
+    if (resp.wrongCount) {
+      this.set("wrongCount", resp.wrongCount);
+      delete resp.wrongCount;
+    }
+    return resp;
+  },
+
+  levels: function() {
+    return this._levels;
   }
 });
 
