@@ -14,4 +14,7 @@
 .level-chart {
   @extend .basic;
   width: 1000px;
+  &:empty {
+    display: none;
+  }
 }
