@@ -1,0 +1,17 @@
+@import 'partials/color';
+
+.basic {
+  margin: 20px auto;
+  border: 2px solid $orange-shade;
+  border-radius: 3px;
+}
+
+#spider-chart {
+  @extend .basic;
+  width: 600px;
+}
+
+.level-chart {
+  @extend .basic;
+  width: 1000px;
+}
