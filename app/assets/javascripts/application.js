@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require underscore
 //= require jquery.serializejson
+//= require highcharts
+//= require highcharts-theme
+//= require highcharts-more
 //= require backbone
 //= require mental_math
 //= require_tree ../templates
