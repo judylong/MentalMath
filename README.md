@@ -3,7 +3,7 @@
 ### Math game app made with Ruby on Rails and Backbone.js
 
 ### Find a live version [here][heroku]
-[heroku]: https://mentalmath.herokuapp.com/
+[heroku]: http://mentalmath.judylong.xyz/
 
 ### Game Play
 The game is split up into 9 levels, each testing a different type of arithmetic problem.
