@@ -4,6 +4,7 @@
 
 ### Find a live version [here][heroku]
 [heroku]: http://mentalmath.judylong.xyz/
+Note: Please use Google Chrome
 
 ### Game Play
 The game is split up into 9 levels, each testing a different type of arithmetic problem.
@@ -18,3 +19,4 @@ Answer incorrectly, and the question will be repeated. Make submissions until yo
 
 ### Additional Libraries/Resources Used
 - Chrome browser's native Speech Synthesis API
+- Highcharts.js
